@@ -63,13 +63,13 @@ const SignUP = () => {
     return (
         <>
             <Helmet>
-                <title>SurveyMaster | Sign up</title>
+                <title>Task Vista | Sign up</title>
             </Helmet>
             <div className="hero min-h-screen bg-base-200">
                 <div className="hero-content my-20 md:gap-20 flex-col lg:flex-row">
                     <div className="text-center">
                         <h1 className="text-4xl py-5 font-bold">Sign up now!</h1>
-                        <img className="rounded-xl" src="https://i.ibb.co/FHLpNWh/image.png" alt="image" />
+                        <img className="rounded-xl" src="https://i.ibb.co/WzbZ0C7/image.png" alt="image" />
 
                     </div>
                     <div className="card w-full md:w-1/2 max-w-sm shadow-2xl bg-base-100">

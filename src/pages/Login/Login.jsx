@@ -72,7 +72,7 @@ const Login = () => {
                 <div className="hero-content flex-col my-20 md:gap-20 lg:flex-row">
                     <div className="text-center">
                         <h1 className="text-4xl py-5 font-bold">Login now! </h1>
-                        <img className="rounded-xl" src="https://i.ibb.co/vVN4cMV/image.png" alt="image" />
+                        <img className="rounded-xl" src="https://i.ibb.co/t3NghmN/image.png" alt="image" />
                     </div>
                     <div className="card w-full md:w-1/2 max-w-sm shadow-2xl bg-base-100">
                         <form onSubmit={handleLogin} className="px-5">
