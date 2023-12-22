@@ -2,31 +2,27 @@ import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useState } from "react";
+
 
 const AddNewTask = () => {
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm(); // Include formState for error handling
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
-    const [selectedDate, setSelectedDate] = useState(new Date());
 
     const onSubmit = async data => {
         try {
 
-            const surveyData = {
+            const taskData = {
                 title: data.title,
-                category: data.category,
                 description: data.description,
-                options: ['Yes', 'No'],
-                likes: 0,
-                dislikes: 0,
-                timestamp: new Date().toISOString(),
+                deadline: data.deadline,
+                priority: data.priority,
+                status: data.status,
             };
 
-            // Send the survey data to the server
-            const response = await axiosSecure.post('/surveys', surveyData);
+            // Send the task data to the server
+            const response = await axiosSecure.post('/tasks', taskData);
 
             if (response.data) {
                 reset();
@@ -34,23 +30,24 @@ const AddNewTask = () => {
                 Swal.fire({
                     position: "center",
                     icon: "success",
-                    title: `${data.title} survey created successfully`,
+                    title: `${data.title} added successfully`,
                     showConfirmButton: false,
                     timer: 1500
                 });
             }
         } catch (error) {
-            console.error("Error creating survey:", error);
+            console.error("Error creating task:", error);
         }
     };
 
     return (
         <div>
-            <h1 className="text-4xl">Add a New Task</h1>
+            <h1 className="text-4xl text-center underline">Add a New Task</h1>
             <div className="ml-24">
                 <form onSubmit={handleSubmit(onSubmit)}>
+
                     {/* Title */}
-                    <div className="form-control w-full my-6">
+                    <div className="form-control w-full my-3">
                         <label className="label">
                             <span className="label-text">Title *</span>
                         </label>
@@ -61,7 +58,9 @@ const AddNewTask = () => {
                             className="input input-bordered w-full"
                         />
                     </div>
-                    <div className="form-control w-full my-6">
+
+                    {/* Description */}
+                    <div className="form-control w-full my-3">
                         <label className="label">
                             <span className="label-text">Description </span>
                         </label>
@@ -74,50 +73,62 @@ const AddNewTask = () => {
                     </div>
 
                     {/* Deadline */}
-                    <div className="form-control w-full my-6">
-                        <label className="label">
-                            <span className="label-text">Deadline *</span>
-                        </label>
-                        <DatePicker
-                            selected={selectedDate}
-                            onChange={(date) => setSelectedDate(date)}
-                            minDate={new Date()} // Set minimum date to the current date
-                            dateFormat="yyyy-MM-dd" // Customize date format as needed
-                            placeholderText="Select Deadline"
-                            className="input input-bordered w-full"
-                        />
-                    </div>
-                    {/* <div className="form-control w-full my-6">
-                        <label className="label">
+                    <div className="form-control w-full my-3">
+                        <label htmlFor="deadline" className="label">
                             <span className="label-text">Deadline *</span>
                         </label>
                         <input
-                            type="text"
-                            placeholder="Deadline"
+                            type="date"
                             {...register("deadline", { required: true })}
-                            className="input input-bordered w-full"
+                            id="deadline"
+                            className={`input input-bordered w-full ${errors.deadline ? 'border-red-500' : ''}`}
                         />
-                    </div> */}
+                        {errors.deadline && (
+                            <span className="error-message">Deadline is required</span>
+                        )}
+                    </div>
 
                     {/* Priority */}
-                    <div className="form-control w-full my-6">
-                        <label className="label">
+                    <div className="form-control w-full my-3">
+                        <label htmlFor="priority" className="label">
                             <span className="label-text">Priority *</span>
                         </label>
                         <select
                             defaultValue="default"
                             {...register("priority", { required: true })}
-                            className="select select-bordered w-full"
+                            id="priority"
+                            className={`select select-bordered w-full ${errors.priority ? 'border-red-500' : ''}`}
                         >
                             <option disabled value="default">
                                 Select Priority Level
                             </option>
-                            <option value="Customer Satisfaction">Low</option>
-                            <option value="Health & Wellness">Medium</option>
-                            <option value="Career Development">High</option>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                        {errors.priority && (
+                            <span className="error-message">Priority is required</span>
+                        )}
+                    </div>
+                    {/* Status */}
+                    <div className="form-control w-full my-3">
+                        <label htmlFor="priority" className="label">
+                            <span className="label-text">Status </span>
+                        </label>
+                        <select
+                            defaultValue="To-Do"
+                            {...register("status", { required: true })}
+                            className={`select select-bordered w-full ${errors.status ? 'border-red-500' : ''}`}
+                        >
+                            <option disabled value="default">
+                                Select Status
+                            </option>
+                            <option value="To-Do">To-Do</option>
+                            <option value="On-Going">On-Going</option>
+                            <option value="Completed">Completed</option>
                         </select>
                     </div>
-                    <button className="btn bg-green-900 text-white mt-5">
+                    <button className="btn bg-teal-600 w-full text-white mt-5">
                         Add Task
                     </button>
                 </form>

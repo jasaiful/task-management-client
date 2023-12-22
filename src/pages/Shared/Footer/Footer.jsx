@@ -8,7 +8,7 @@ const Footer = () => {
             <aside>
                 <Link to='/'><img className="rounded-xl" src={logo} alt="" /></Link>
                 <header className="text-4xl font-bold">Task Vista</header>
-                <p className="italic text-2xl">a creation of <span className="font-bold text-pink-600">SCC Technovision Inc.</span> </p>
+                <p className="italic text-xl">a creation of <span className="font-bold text-pink-600">SCC Technovision Inc.</span> </p>
                 <p>
                     House: 48, Road: 11/A, Dhanmondi, Dhaka-1209
                 </p>
