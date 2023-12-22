@@ -4,11 +4,11 @@ import { FaFacebook, FaLinkedin, FaTwitter, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <footer className="footer mt-5 footer-center p-10 bg-base-200">
+        <footer className="footer mt-5 border-gray-400 border-t-8 rounded-t-3xl footer-center p-10 bg-teal-100">
             <aside>
                 <Link to='/'><img className="rounded-xl" src={logo} alt="" /></Link>
                 <header className="text-4xl font-bold">Task Vista</header>
-                <p className="italic">Providing reliable job placement services since 2019</p>
+                <p className="italic text-2xl">a creation of <span className="font-bold text-pink-600">SCC Technovision Inc.</span> </p>
                 <p>
                     House: 48, Road: 11/A, Dhanmondi, Dhaka-1209
                 </p>

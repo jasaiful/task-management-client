@@ -1,11 +1,11 @@
-import { useContext} from "react";
-import { AuthContext } from "../../provider/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import { Helmet } from "react-helmet-async";
-import SocialLogin from "../../components/SocialLogin";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
 import { useForm } from "react-hook-form";
+import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
+import SocialLogin from "../../components/SocialLogin";
 
 
 const SignUP = () => {
@@ -50,7 +50,7 @@ const SignUP = () => {
                                         showConfirmButton: false,
                                         timer: 1500
                                     });
-                                    navigate('/dashboard/userHome'); //navigate to home page
+                                    navigate('/dashboard'); //navigate to home page
                                 }
                             })
                     })

@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { LoadCanvasTemplate, loadCaptchaEnginge, validateCaptcha } from "react-simple-captcha";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import SocialLogin from "../../components/SocialLogin";
 
 const Login = () => {
@@ -66,10 +66,10 @@ const Login = () => {
     return (
         <>
             <Helmet>
-                <title>SurveyMaster | Login</title>
+                <title>Task Vista | Login</title>
             </Helmet>
-            <div className="hero min-h-screen bg-base-200">
-                <div className="hero-content flex-col my-20 md:gap-20 lg:flex-row">
+            <div className="hero min-h-screen rounded-2xl bg-base-200">
+                <div className="hero-content flex-col md:gap-20 lg:flex-row">
                     <div className="text-center">
                         <h1 className="text-4xl py-5 font-bold">Login now! </h1>
                         <img className="rounded-xl" src="https://i.ibb.co/t3NghmN/image.png" alt="image" />
@@ -118,7 +118,7 @@ const Login = () => {
                             </div>
                         </form>
                         <p className='text-center px-6 py-3'>
-                            <small>New Here? <Link className="font-bold" to={"/register"}>Register</Link> </small>
+                            <small>New Here? <Link className="font-bold" to={"/signUp"}>Register</Link> </small>
                         </p>
                         <div className="pb-5 mx-auto">
                             <SocialLogin></SocialLogin>
